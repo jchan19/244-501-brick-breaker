@@ -16,6 +16,7 @@ public class PaddleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Allows player to move left and right
         playerInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * Time.deltaTime * paddleSpeed * playerInput);
     }

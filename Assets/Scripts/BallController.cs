@@ -11,11 +11,14 @@ public class BallController : MonoBehaviour
     public int randomNumber;
     public float ballForce;
     public Vector3 startPosition;
+    public GameMaster gameMaster;
+   
 
     // Start is called before the first frame update
     void Start()
     {
         ballRigidBody = GetComponent<Rigidbody2D>();
+        gameMaster.GetComponent<GameMaster>();
     }
 
     // Update is called once per frame
@@ -32,11 +35,20 @@ public class BallController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // if ball passes the player on the bottom
+        // respawns ball to initial position
+        // also loses one life
+
         if (other.gameObject.tag == "DefeatZone")
         {
+           
             ballRigidBody.velocity = Vector3.zero;
+            gameMaster.playerLives -= 1;
             transform.position = startPosition;
             ballLaunched = false;
+
         }
     }
+
+ 
 }
