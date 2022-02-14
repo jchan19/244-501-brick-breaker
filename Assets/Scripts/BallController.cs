@@ -32,6 +32,14 @@ public class BallController : MonoBehaviour
             ballLaunched = true;
 
         }
+
+        // Cheat code to reset ball
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ballRigidBody.velocity = Vector3.zero;
+            transform.position = startPosition;
+            ballLaunched = false;
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -44,6 +52,10 @@ public class BallController : MonoBehaviour
            
             ballRigidBody.velocity = Vector3.zero;
             gameMaster.playerLives -= 1;
+
+            // Calls the updatelives method in gamemaster to subtract 1 from the current lives on text
+            gameMaster.UpdateLives(-1);
+
             transform.position = startPosition;
             ballLaunched = false;
 

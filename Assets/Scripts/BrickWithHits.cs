@@ -32,6 +32,8 @@ public class BrickWithHits : MonoBehaviour
         if (numberOfHits >= maxHits)
         {
             gameMaster.playerPoints =  gameMaster.playerPoints + brickValue;
+            // Calls the update score in gamemaster to update player points depending on brick value
+            gameMaster.UpdateScore(brickValue);
             Destroy(this.gameObject);
            
         }
