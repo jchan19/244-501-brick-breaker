@@ -17,8 +17,7 @@ public class PaddleController : MonoBehaviour
     void Start()
     {
         paddleSounds = GetComponents<AudioSource>();
-        speedSound = paddleSounds[0];
-        sizeSound = paddleSounds[1];
+        sizeSound = paddleSounds[0];
     }
 
     // Update is called once per frame
@@ -33,18 +32,34 @@ public class PaddleController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag ("SpeedUp"))
-        {
-            speedSound.Play();
-            Destroy(other.gameObject);
-        }
-       
-        if (other.CompareTag ("Enlarge"))
+        
+
+        // If collides with Enlarge powerup
+        if (other.CompareTag("Enlarge"))
         {
             sizeSound.Play();
             Destroy(other.gameObject);
+            StartCoroutine(ChangeSize());
         }
 
     }
 
+    // Scaling Paddle Size
+    public IEnumerator ChangeSize()
+    {
+
+        // Increase paddle size
+        Vector3 add = new Vector3(3f, 0f, 3f);
+
+        transform.localScale = new Vector3(transform.localScale.x + add.x,
+                                           transform.localScale.y + add.y,
+                                           transform.localScale.z + add.z);
+        // Powerup timer
+        yield return new WaitForSeconds(6f); 
+
+        //Return original paddle size
+        transform.localScale = new Vector3(transform.localScale.x - add.x,
+                                           transform.localScale.y - add.y,
+                                           transform.localScale.z - add.z);
+    }
 }

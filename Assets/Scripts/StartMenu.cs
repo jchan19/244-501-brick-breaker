@@ -5,21 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
+    // Next Level
     public void StartGame()
     {
         SceneManager.LoadScene("Level" + 1);
     }
     
+    //Help Menu Scene
     public void HelpScreen()
     {
         SceneManager.LoadScene("Help Menu");
     }
 
+    // Start Menu Screen
     public void GoBack()
     {
         SceneManager.LoadScene("Start Menu");
     }
 
+    //Start Menu Screen
     public void PlayAgain()
     {
         SceneManager.LoadScene("Start Menu");

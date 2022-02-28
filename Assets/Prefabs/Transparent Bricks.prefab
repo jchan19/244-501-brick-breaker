@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2216211170164573973}
   m_Layer: 0
   m_Name: Transparent Bricks
-  m_TagString: Untagged
+  m_TagString: Bricks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
