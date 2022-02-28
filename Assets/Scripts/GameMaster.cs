@@ -42,24 +42,36 @@ public class GameMaster : MonoBehaviour
                 LoadLevel(this.level + 1);
             }
             // Loads to winning scene 
-            if (this.level > 5 )
-            SceneManager.LoadScene("WinScene");
-  
+            if (this.level > 5)
+                SceneManager.LoadScene("WinScene");
+
         }
 
-        //Cheats
+        //CHEATS
 
-        // Go to next level cheat
+        // Go to next level 
         if (Input.GetKeyDown(KeyCode.N))
         {
             LoadLevel(this.level + 1);
         }
 
-        //Go to start scene cheat
-
+        //Go to start scene 
         if (Input.GetKeyDown(KeyCode.H))
         {
             SceneManager.LoadScene("Start Menu");
+        }
+
+
+        // Go to lose scene
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
+
+        // Go to win scene
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            SceneManager.LoadScene("WinScene");
         }
     }
 

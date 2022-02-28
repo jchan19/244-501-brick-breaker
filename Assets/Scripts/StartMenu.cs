@@ -19,4 +19,34 @@ public class StartMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Start Menu");
     }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("Start Menu");
+    }
+    
+
+    // CHEATS
+    void Update()
+    {
+
+        //Go to start scene 
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SceneManager.LoadScene("Start Menu");
+        }
+
+
+        // Go to lose scene
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
+
+        // Go to win scene
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+    }
 }

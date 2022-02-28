@@ -12,13 +12,25 @@ public class BallController : MonoBehaviour
     public float ballForce;
     public Vector3 startPosition;
     public GameMaster gameMaster;
-   
+
+    public Transform speedPowerUp;
+    public Transform enlargePowerUp;
+
+    private AudioSource[] sounds;
+    private AudioSource ballBounceAudio;
+    private AudioSource launchAudio;
+    private AudioSource ballDeathAudio;
+
 
     // Start is called before the first frame update
     void Start()
     {
         ballRigidBody = GetComponent<Rigidbody2D>();
         gameMaster.GetComponent<GameMaster>();
+        sounds = GetComponents<AudioSource>();
+        ballBounceAudio = sounds[0];
+        launchAudio = sounds[1];
+        ballDeathAudio = sounds[2];
     }
 
     // Update is called once per frame
@@ -30,7 +42,7 @@ public class BallController : MonoBehaviour
             randomNumber = Random.Range(0, startDirections.Length);
             ballRigidBody.AddForce(startDirections[randomNumber] * ballForce, ForceMode2D.Impulse);
             ballLaunched = true;
-
+            launchAudio.Play();
         }
 
         // Cheat code to reset ball
@@ -49,7 +61,7 @@ public class BallController : MonoBehaviour
 
         if (other.gameObject.tag == "DefeatZone")
         {
-           
+            ballDeathAudio.Play();
             ballRigidBody.velocity = Vector3.zero;
             gameMaster.playerLives -= 1;
 
@@ -60,7 +72,25 @@ public class BallController : MonoBehaviour
             ballLaunched = false;
 
         }
+
     }
 
- 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // Random chance to spawn powerup
+        int randChance = Random.Range(1, 500);
+        if (randChance < 25)
+        {
+            Instantiate(speedPowerUp, other.transform.position, other.transform.rotation);
+        }
+        if (randChance < 50)
+        {
+            Instantiate(enlargePowerUp, other.transform.position, other.transform.rotation);
+        }
+           
+
+        ballBounceAudio.Play();
+    }
+
+
 }
